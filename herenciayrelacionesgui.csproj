@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
+  <ItemGroup>
+    <None Remove="Persistencia\" />
+    <None Remove="Clases\" />
+    <None Remove="Pages\Vehiculos\" />
+    <None Remove="Pages\Prestamos\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Persistencia\" />
+    <Folder Include="Clases\" />
+    <Folder Include="Pages\Vehiculos\" />
+    <Folder Include="Pages\Prestamos\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+  </ItemGroup>
+</Project>

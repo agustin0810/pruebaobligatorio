@@ -1,0 +1,30 @@
+﻿@page
+@model herenciayrelacionesgui.Pages.Prestamos.ListPrestamosModel
+@{
+}
+
+<div class="text-center">
+    <h1 class="display-4">Lista de Prestamos</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Vehiculo</th>
+                <th>Precio</th>
+                <th>Cedula cliente</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var p in Model.prestamos)
+            {
+                <tr>
+                    <td>@p.Fecha</td>
+                    <td>@p.Vehiculo.ToString()</td>
+                    <td>@p.Precio</td>
+                    <td>@p.CedulaCliente</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

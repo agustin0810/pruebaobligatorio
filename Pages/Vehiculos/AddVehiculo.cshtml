@@ -1,0 +1,30 @@
+﻿@page
+@model herenciayrelacionesgui.Pages.Vehiculos.AddVehiculoModel
+@{
+}
+
+<div class="text-center">
+    <h1 class="display-4" style="font-size: 40px">Agregar vehículo</h1>
+    <form method="post">
+        <div class="form-group">
+            <label for="matricula">Matricula:</label>
+            <input type="text" class="form-control" id="matricula" name="matricula">
+        </div>
+        <div class="form-group">
+            <label for="preciomercado">Precio mercado:</label>
+            <input type="text" class="form-control" id="preciomercado" name="preciomercado">
+        </div>
+        <div class="form-group">
+            <label>
+                <input type="radio" checked name="tipo_vehiculo" value="automovil">
+                Automovil
+            </label>
+            <label>
+                <input type="radio" name="tipo_vehiculo" value="motocicleta">
+                Motocicleta
+            </label>
+        </div>
+        <button type="submit" class="btn btn-primary" asp-page-handler="AddVehiculo">Agregar Vehiculo</button>
+    </form>
+
+</div>

@@ -1,0 +1,58 @@
+﻿@page
+@model herenciayrelacionesgui.Pages.Prestamos.AddPrestamosModel
+@{
+
+}
+
+<div class="text-center">
+    <h1 class="display-4" style="font-size: 40px">Agregar prestamo</h1>
+    <form method="post">
+        <div class="form-group">
+            <label for="fecha">Fecha:</label>
+            <input type="date" class="form-control" id="fecha" name="fecha">
+        </div>
+        <div class="form-group">
+            <label for="vehiculos">Vehículos:</label>
+            <select class="form-control" id="vehiculos" name="vehiculos" onchange="seleccionarVehiculo()">
+                @foreach (var vehiculo in Model.VehiculosDisponibles)
+                {
+                    <option value="@vehiculo.Matricula">@vehiculo.Matricula $@vehiculo.PrecioMercado</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="precio">Precio:</label>
+            <input type="text" class="form-control" readonly id="precio" name="precio">
+        </div>
+        <div class="form-group">
+            <label for="ci">Cédula cliente:</label>
+            <input type="text" class="form-control" id="cedulacliente" name="cedulacliente">
+        </div>
+        <div class="form-group">
+            <label for="ci">Celular cliente:</label>
+            <input type="text" class="form-control" id="celularcliente" name="celularcliente">
+        </div>
+        <button type="submit" class="btn btn-primary" asp-page-handler="AddPrestamo">Agregar prestamo</button>
+    </form>
+
+</div>
+
+<script>
+    function seleccionarVehiculo() {
+        var matriculaSeleccionada = document.getElementById("vehiculos").value;
+
+        $.ajax({
+            url: "?handler=ConseguirCalculoPrecio&matricula="+matriculaSeleccionada,
+            method: "GET",
+            success: function (response) {
+                // Manejar la respuesta del servidor si es necesario
+                document.getElementById("precio").value = response;
+                console.log(response);
+            },
+            error: function (xhr, status, error) {
+                // Manejar errores si es necesario
+                console.error("Error en la solicitud AJAX:", error);
+            }
+        });
+    }
+</script>

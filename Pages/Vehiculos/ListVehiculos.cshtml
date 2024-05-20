@@ -1,0 +1,38 @@
+﻿@page
+@model herenciayrelacionesgui.Pages.Vehiculos.ListVehiculosModel
+@{
+}
+
+<div class="text-center">
+    <h1 class="display-4">Lista de Vehiculos</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Matricula</th>
+                <th>Precio mercado</th>
+                <th>Disponible</th>
+                <th>Tipo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var v in Model.vehiculos)
+            {
+                <tr>
+                    <td>@v.Matricula</td>
+                    <td>@v.PrecioMercado</td>
+                    <td>@v.Disponible</td>
+                    <td>@v.GetType().Name</td>
+                    <td>
+                        <a class="btn btn-primary" asp-page="./UpdateVehiculo" asp-route-matricula="@v.Matricula">Editar</a>
+                        <form method="post" asp-page-handler="DeleteVehiculo">
+                            <input type="hidden" name="matricula" value="@v.Matricula" />
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
